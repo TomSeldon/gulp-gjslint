@@ -46,39 +46,23 @@ describe('Integration tests with gjslint', function() {
 
     it('should emit the correct number of errors when passed a mixture of valid and invalid files', function(done) {
         var i = 0,
-            stream = gulpGjslint();
+            mockFiles = [
+                __dirname + '/fixtures/pass.js',
+                __dirname + '/fixtures/fail.js',
+                __dirname + '/fixtures/pass2.js',
+                __dirname + '/fixtures/fail2.js'
+            ];
 
-        stream.on('error', errSpy);
+        gulp.src(mockFiles)
+            .pipe(gulpGjslint())
+            .on('error', errSpy)
+            .on('data', function(data) {
+                i += 1;
 
-        stream.on('data', function() {
-            i += 1;
-
-            if (i === 5) {
-                errSpy.callCount.should.equal(3);
-                done();
-            }
-        });
-
-        stream.write(new File({
-            path: __dirname + '/fixtures/pass.js'
-        }));
-
-        stream.write(new File({
-            path: __dirname + '/fixtures/pass.js'
-        }));
-
-        stream.write(new File({
-            path: __dirname + '/fixtures/fail.js'
-        }));
-
-        stream.write(new File({
-            path: __dirname + '/fixtures/fail.js'
-        }));
-
-        stream.write(new File({
-            path: __dirname + '/fixtures/fail.js'
-        }));
-
-        stream.end();
+                if (i === 4) {
+                    errSpy.callCount.should.equal(2);
+                    done();
+                }
+            });
     });
 });
