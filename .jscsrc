@@ -1,0 +1,9 @@
+{
+    "preset": "google",
+    
+    "validateIndentation": 4,
+    
+    "excludeFiles": [
+        "tests/fixtures/**/*.js"
+    ]
+}

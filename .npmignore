@@ -1,6 +1,5 @@
 node_modules/
 test/
-.jshintrc
 .gitignore
-.gjslintrc
+.jscsrc
 Gruntfile.js

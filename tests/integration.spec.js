@@ -3,10 +3,10 @@
 var chai = require('chai'),
     sinon = require('sinon'),
     sinonChai = require('sinon-chai'),
-    mocha = require('mocha' ),
+    mocha = require('mocha'),
     File = require('gulp-util').File,
     assert = require('assert'),
-    gulp = require('gulp' ),
+    gulp = require('gulp'),
     gulpGjslint = require('../index');
 
 // Setup test tools
@@ -44,25 +44,29 @@ describe('Integration tests with gjslint', function() {
             });
     });
 
-    it('should emit the correct number of errors when passed a mixture of valid and invalid files', function(done) {
-        var i = 0,
-            mockFiles = [
-                __dirname + '/fixtures/pass.js',
-                __dirname + '/fixtures/fail.js',
-                __dirname + '/fixtures/pass2.js',
-                __dirname + '/fixtures/fail2.js'
-            ];
+    it('should emit the correct number of errors when passed ' +
+            'a mixture of valid and invalid files',
 
-        gulp.src(mockFiles)
-            .pipe(gulpGjslint())
-            .on('error', errSpy)
-            .on('data', function(data) {
-                i += 1;
+        function(done) {
+            var i = 0,
+                mockFiles = [
+                    __dirname + '/fixtures/pass.js',
+                    __dirname + '/fixtures/fail.js',
+                    __dirname + '/fixtures/pass2.js',
+                    __dirname + '/fixtures/fail2.js'
+                ];
 
-                if (i === 4) {
-                    errSpy.callCount.should.equal(2);
-                    done();
-                }
-            });
-    });
+            gulp.src(mockFiles)
+                .pipe(gulpGjslint())
+                .on('error', errSpy)
+                .on('data', function(data) {
+                    i += 1;
+
+                    if (i === 4) {
+                        errSpy.callCount.should.equal(2);
+                        done();
+                    }
+                });
+        }
+    );
 });

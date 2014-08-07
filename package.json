@@ -4,7 +4,7 @@
   "description": "Gulp task for running gjslint",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests"
+    "test": "mocha tests ; jscs ./**/*.js"
   },
   "repository": {
     "type": "git",
@@ -25,9 +25,10 @@
   "author": "Tom Seldon <tom@tomseldon.co.uk>",
   "license": "BSD-2-Clause",
   "peerDependencies": {
-    "closure-linter-wrapper": "~0.2.9"
+    "gulp": "^3.8"
   },
   "dependencies": {
+    "closure-linter-wrapper": "~0.2.9",
     "gulp-util": "~3.0.0",
     "through2": "~0.5.1",
     "merge": "~1.1.3"
@@ -36,6 +37,7 @@
     "assert": "~1.1.1",
     "chai": "^1.9.1",
     "gulp": "^3.8.7",
+    "jscs": "^1.5.9",
     "mocha": "~1.21.0",
     "sinon": "^1.10.3",
     "sinon-chai": "^2.5.0"
