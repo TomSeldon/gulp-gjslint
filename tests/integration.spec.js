@@ -5,18 +5,16 @@ var chai = require('chai'),
     sinonChai = require('sinon-chai'),
     mocha = require('mocha' ),
     File = require('gulp-util').File,
-    assert = require('assert');
-var gutil = require('gulp-util');
-var out = process.stdout.write.bind(process.stdout);
-var gulp = require('gulp');
-var gulpGjslint = require('../index');
+    assert = require('assert'),
+    gulp = require('gulp' ),
+    gulpGjslint = require('../index');
 
 // Setup test tools
 chai.should();
 chai.use(sinonChai);
 
 describe('Integration tests with gjslint', function() {
-    var stream, errSpy;
+    var errSpy;
 
     beforeEach(function() {
         errSpy = sinon.spy();
