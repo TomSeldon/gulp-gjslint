@@ -2,10 +2,6 @@
  * gulp-gjslint
  */
 
-/* jshint global require */
-/* jshint global module */
-/* jshint global exports */
-
 'use strict';
 
 var GulpGjslint = require(__dirname + '/lib/GulpGjslint');
@@ -20,3 +16,4 @@ task = function(options)
 };
 
 module.exports = task;
+module.exports.reporter = GulpGjslint.reporter;
