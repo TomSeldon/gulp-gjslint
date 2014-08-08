@@ -3,3 +3,4 @@ tests/
 .travis.yml
 .jscsrc
 .editorconfig
+TODO.md
