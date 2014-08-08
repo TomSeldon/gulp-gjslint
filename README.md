@@ -1,4 +1,4 @@
-# gulp-gjslint
+# gulp-gjslint [![Build Status](https://travis-ci.org/TomSeldon/gulp-gjslint.svg?branch=master)](https://travis-ci.org/TomSeldon/gulp-gjslint)
 
 > Lint Javascript using [Google's Javascript linter](https://developers.google.com/closure/utilities/)
 
