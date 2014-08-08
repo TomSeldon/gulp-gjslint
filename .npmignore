@@ -1,0 +1,5 @@
+.git*
+tests/
+.travis.yml
+.jscsrc
+.editorconfig
