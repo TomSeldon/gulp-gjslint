@@ -15,14 +15,27 @@
 var gulp = require('gulp'),
     gjslint = require('./index');
 
+// Output all errors to the console
 gulp.task('default', function() {
     return gulp.src('./tests/fixtures/**/*.js')
         .pipe(gjslint())
         .pipe(gjslint.reporter('console'));
 });
 
-gulp.task('default', function() {
+// Output to the console, but stop and fail on the first error
+gulp.task('fail-on-first', function() {
     return gulp.src('./tests/fixtures/**/*.js')
         .pipe(gjslint())
         .pipe(gjslint.reporter('console', {fail: true}));
 });
+
+var jshint = require('gulp-jshint');
+
+// Output all failures to the console, and then fail.
+gulp.task('fail-after-all', function() {
+    return gulp.src('./tests/fixtures/**/*.js')
+        .pipe(gjslint())
+        .pipe(gjslint.reporter('console'))
+        .pipe(gjslint.reporter('fail'));
+});
+

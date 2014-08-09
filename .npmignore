@@ -3,4 +3,5 @@ tests/
 .travis.yml
 .jscsrc
 .editorconfig
+Gulpfile.md
 TODO.md

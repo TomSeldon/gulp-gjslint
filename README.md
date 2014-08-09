@@ -82,5 +82,7 @@ Currently, only the **console** reporter is available.
 ```js
 {
     fail: false // If true, emits an error on failure. Useful for CI servers.
+                // Note: This will cause the task to fail after the first
+                // linting error.
 }
 ```
