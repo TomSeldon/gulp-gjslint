@@ -39,3 +39,12 @@ gulp.task('fail-after-all', function() {
         .pipe(gjslint.reporter('fail'));
 });
 
+// Usage with jshint-stylish
+// Output all failures to the console, and then fail.
+gulp.task('jshint-adapter', function() {
+    var stylish = require('jshint-stylish/stylish');
+
+    return gulp.src('./tests/fixtures/**/*.js')
+        .pipe(gjslint())
+        .pipe(gjslint.reporter('jshint', stylish.reporter, {}));
+});
