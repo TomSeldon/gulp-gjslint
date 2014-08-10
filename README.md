@@ -66,9 +66,9 @@ Writes `gjslint` object to each Vinyl object, e.g.
 
 Write reporter on each file that was processed by `gjslint`.
 
-Currently, only the **console** reporter is available.
-
 #### Reporter: Console
+
+Output results to the console.
 
 ##### Example usage
 
@@ -85,4 +85,34 @@ Currently, only the **console** reporter is available.
                 // Note: This will cause the task to fail after the first
                 // linting error.
 }
+```
+
+#### Reporter: Fail
+
+Emits an error on when processing a failed file.
+
+Intended for use with a CI server in conjunction with another style of reporter.
+
+##### Example usage
+
+```js
+    .pipe(gjslint())
+    .pipe(gjslint.reporter('console'))
+    .pipe(gjslint.reporter('fail'))
+```
+
+#### Reporter: Jshint Adapter
+
+Experimental adapter for using Jshint reporters. Only tested with
+[jshint-stylish](https://github.com/sindresorhus/jshint-stylish).
+
+##### Example usage
+
+```js
+var stylish = require('jshint-stylish').reporter,
+    options = {};
+
+gulp.src('./**/*.js')
+    .pipe(gjslint())
+    .pipe(gjslint.reporter('jshint', stylish, options);
 ```
