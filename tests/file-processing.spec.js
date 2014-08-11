@@ -78,12 +78,18 @@ describe('Parsing a linted file', function() {
     it('should attach an array of errors to the file' +
         'when linting has failed',
         function() {
+            var results;
+
             file = gulpGjslint.parseResults(file, mockLintError);
-            file.gjslint.should.have.property('errors');
-            file.gjslint.errors.length.should.equal(1);
-            file.gjslint.errors[0].should.have.property('code');
-            file.gjslint.errors[0].should.have.property('line');
-            file.gjslint.errors[0].should.have.property('description');
+
+            results = file.gjslint.results;
+
+            file.gjslint.should.have.property('results');
+            results.should.have.property('errors');
+            results.errors.length.should.equal(1);
+            results.errors[0].should.have.property('code');
+            results.errors[0].should.have.property('line');
+            results.errors[0].should.have.property('description');
         }
     );
 });

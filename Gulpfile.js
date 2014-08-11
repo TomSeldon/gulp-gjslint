@@ -10,6 +10,11 @@
  * gjslint.reporter('console')
  * ===========================
  * Logs details of failed files to the console
+ *
+ * gjslint.reporter('fail')
+ * ========================
+ * Emits an error if a file has failed linting.
+ * (Useful for CI builds)
  */
 
 var gulp = require('gulp'),

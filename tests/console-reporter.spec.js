@@ -48,22 +48,22 @@ describe('Reporter: Console', function() {
 
             badFile.gjslint = {
                 success: false,
-                errors: [
-                    {
-                        line: 1,
-                        description: 'Some description about the error.'
-                    }
-                ]
+                results: {
+                    errors: [
+                        {
+                            line: 1,
+                            description: 'Some description about the error.'
+                        }
+                    ]
+                }
             };
 
             consoleReporter.on('data', function() {
                 i += 1;
 
                 if (i === 2) {
-                    console.log.should.have.been.calledWith(
-                        'some-fake-file.js'
-                    );
-                    console.log.callCount.should.equal(2);
+                    console.log.should.have.been.called;
+                    console.log.callCount.should.equal(3);
                     console.log.restore();
                     done();
                 }
@@ -84,12 +84,14 @@ describe('Reporter: Console', function() {
         file = new File({path: 'some-other-file.js'});
         file.gjslint = {
             success: false,
-            errors: [
-                {
-                    line: 1,
-                    description: 'Some description about the error.'
-                }
-            ]
+            results: {
+                errors: [
+                    {
+                        line: 1,
+                        description: 'Some description about the error.'
+                    }
+                ]
+            }
         };
 
         consoleReporter.on('error', errStub);

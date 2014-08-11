@@ -54,7 +54,9 @@ describe('Jshint Reporter Adapter', function() {
 
             file.gjslint = {
                 success: false,
-                errors: [mockError]
+                results: {
+                    errors: [mockError]
+                }
             };
 
             parsedFile = new JshintAdapter(file);

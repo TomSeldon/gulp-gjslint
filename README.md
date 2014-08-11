@@ -73,8 +73,13 @@ Output results to the console.
 ##### Example usage
 
 ```js
-    .pipe(gjslint())
-    .pipe(gjslint.reporter('console');
+gulp.task('lint', function() {
+    var gjslint = require('gulp-gjslint'),
+        options = {};
+
+    return gulp.src('./**/*.js')
+        .pipe(gjslint())
+        .pipe(gjslint.reporter('console', options));
 ```
 
 ##### Default options:
@@ -96,9 +101,14 @@ Intended for use with a CI server in conjunction with another style of reporter.
 ##### Example usage
 
 ```js
-    .pipe(gjslint())
-    .pipe(gjslint.reporter('console'))
-    .pipe(gjslint.reporter('fail'))
+gulp.task('lint', function() {
+    var gjslint = require('gulp-gjslint');
+
+    return gulp.src('./**/*.js')
+        .pipe(gjslint())
+        .pipe(gjslint.reporter('console'))
+        .pipe(gjslint.reporter('fail'));
+});
 ```
 
 #### Reporter: Jshint Adapter
@@ -109,10 +119,13 @@ Experimental adapter for using Jshint reporters. Only tested with
 ##### Example usage
 
 ```js
-var stylish = require('jshint-stylish').reporter,
-    options = {};
+gulp.task('lint', function() {
+    var gjslint = require('gulp-gjslint'),
+        stylish = require('jshint-stylish').reporter,
+        options = {};
 
-gulp.src('./**/*.js')
-    .pipe(gjslint())
-    .pipe(gjslint.reporter('jshint', stylish, options);
+    return gulp.src('./**/*.js')
+        .pipe(gjslint())
+        .pipe(gjslint.reporter('jshint', stylish, options));
+});
 ```
