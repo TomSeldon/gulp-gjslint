@@ -52,13 +52,19 @@ Writes `gjslint` object to each Vinyl object, e.g.
 ```js
 {
     success: true,
-    errors: [
-        {
-            line: 1,
-            code: 2
-            description: 'Missing space before "{"'
-        }
-    ]
+    results: {
+        errors: [
+            {
+                line: 1,
+                code: 2
+                description: 'Missing space before "{"'
+            }
+        ],
+        total: 1,
+        newErrors: 1,
+        filesCount: 1,
+        filesOK: 0
+    }
 }
 ```
 
@@ -75,11 +81,12 @@ Output results to the console.
 ```js
 gulp.task('lint', function() {
     var gjslint = require('gulp-gjslint'),
-        options = {};
+        lintOptions = {},
+        reporterOptions = {};
 
     return gulp.src('./**/*.js')
-        .pipe(gjslint())
-        .pipe(gjslint.reporter('console', options));
+        .pipe(gjslint(lintOptions))
+        .pipe(gjslint.reporter('console', reporterOptions));
 ```
 
 ##### Default options:
@@ -116,16 +123,30 @@ gulp.task('lint', function() {
 Experimental adapter for using Jshint reporters. Only tested with
 [jshint-stylish](https://github.com/sindresorhus/jshint-stylish).
 
+Format for usage is:
+
+```js
+.pipe(gjslint.reporter('jshint', reporterFunction, reporterOptions);
+```
+
 ##### Example usage
 
 ```js
 gulp.task('lint', function() {
     var gjslint = require('gulp-gjslint'),
         stylish = require('jshint-stylish').reporter,
-        options = {};
+        reporterOptions = {};
 
     return gulp.src('./**/*.js')
         .pipe(gjslint())
-        .pipe(gjslint.reporter('jshint', stylish, options));
+        .pipe(gjslint.reporter('jshint', stylish, reporterOptions));
 });
 ```
+
+## Known issues:
+
+* No error handling for when `closure-linter-wrapper` blows up.
+* Limitation of `closure-linter-wrapper` where errors are not returned when a file fails
+  with a large number of errors. The task will still output the names of the failed file(s)
+  and the number of errors, but not the errors themselves.
+
