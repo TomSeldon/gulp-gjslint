@@ -51,7 +51,7 @@ Writes `gjslint` object to each Vinyl object, e.g.
 
 ```js
 {
-    success: true,
+    success: false,
     results: {
         errors: [
             {
@@ -145,7 +145,7 @@ gulp.task('lint', function() {
 
 ## Known issues:
 
-* No error handling for when `closure-linter-wrapper` blows up.
+* Poor handling for when `closure-linter-wrapper` blows up.
 * Limitation of `closure-linter-wrapper` where errors are not returned when a file fails
   with a large number of errors. The task will still output the names of the failed file(s)
   and the number of errors, but not the errors themselves.
