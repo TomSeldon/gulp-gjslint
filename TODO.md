@@ -2,8 +2,7 @@ To do:
 
 High priority:
 
-* Add support for when linting fails but no errors returned.
-  (A limitation of closure-wrapper)
+* Emit error if closure-linter-wrapper returns a non 0 or 2 exit code (i.e. !(ok|linting failed) )
 
 Low priority:
 
