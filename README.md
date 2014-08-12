@@ -126,7 +126,7 @@ Experimental adapter for using Jshint reporters. Only tested with
 Format for usage is:
 
 ```js
-.pipe(gjslint.reporter('jshint', reporterFunction, reporterOptions);
+.pipe(gjslint.reporter('jshint', reporterFunction, reporterOptions));
 ```
 
 ##### Example usage
