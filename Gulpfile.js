@@ -34,8 +34,6 @@ gulp.task('fail-on-first', function() {
         .pipe(gjslint.reporter('console', {fail: true}));
 });
 
-var jshint = require('gulp-jshint');
-
 // Output all failures to the console, and then fail.
 gulp.task('fail-after-all', function() {
     return gulp.src('./tests/fixtures/**/*.js')
