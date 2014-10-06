@@ -4,7 +4,8 @@
   "description": "Gulp task for running gjslint",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/**/*.spec.js ; jscs ./**/*.js"
+    "test": "istanbul cover _mocha tests/**/*.spec.js ; jscs ./**/*.js",
+    "codeclimate": "codeclimate < coverage/lcov.info"
   },
   "homepage": "https://www.github.com/TomSeldon/gulp-gjslint",
   "repository": {
@@ -34,7 +35,9 @@
   },
   "devDependencies": {
     "chai": "^1.9.1",
+    "codeclimate-test-reporter": "0.0.4",
     "gulp": "^3.8.7",
+    "istanbul": "^0.3.2",
     "jscs": "^1.5.9",
     "mocha": "^1.21.0",
     "rewire": "^2.1.0",
