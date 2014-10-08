@@ -6,7 +6,7 @@ var chai = require('chai'),
     mocha = require('mocha'),
     File = require('vinyl'),
     through = require('through2'),
-    ConsoleReporter = require('../lib/reporters/console');
+    ConsoleReporter = require('../lib/reporters/console-reporter');
 
 // Setup test tools
 chai.should();

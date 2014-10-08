@@ -13,12 +13,6 @@ chai.should();
 chai.use(sinonChai);
 
 describe('Jshint Reporter Adapter', function() {
-    var jshintAdapter;
-
-    afterEach(function() {
-        jshintAdapter = null;
-    });
-
     it(
         'should convert a successful gjslint result object ' +
             'into a jshint compatible one',
@@ -31,7 +25,7 @@ describe('Jshint Reporter Adapter', function() {
                 success: true
             };
 
-            parsedFile = new JshintAdapter(file);
+            parsedFile = JshintAdapter.parseFile(file);
 
             parsedFile.should.have.property('jshint');
             parsedFile.jshint.should.have.property('success', true);
@@ -59,7 +53,7 @@ describe('Jshint Reporter Adapter', function() {
                 }
             };
 
-            parsedFile = new JshintAdapter(file);
+            parsedFile = JshintAdapter.parseFile(file);
 
             parsedFile.should.have.property('jshint');
             parsedFile.jshint.should.have.property('success', false);
