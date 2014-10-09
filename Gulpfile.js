@@ -17,38 +17,38 @@
  * (Useful for CI builds)
  */
 
-var gulp = require('gulp'),
-    gjslint = require('./index');
+var gulp = require('gulp');
+var gjslint = require('./index');
 
 // Output all errors to the console
 gulp.task('default', function() {
-    return gulp.src('./tests/fixtures/**/*.js')
-        .pipe(gjslint())
-        .pipe(gjslint.reporter('console'));
+  return gulp.src('./tests/fixtures/**/*.js')
+    .pipe(gjslint())
+    .pipe(gjslint.reporter('console'));
 });
 
 // Output to the console, but stop and fail on the first error
 gulp.task('fail-on-first', function() {
-    return gulp.src('./tests/fixtures/**/*.js')
-        .pipe(gjslint())
-        .pipe(gjslint.reporter('console', {fail: true}));
+  return gulp.src('./tests/fixtures/**/*.js')
+    .pipe(gjslint())
+    .pipe(gjslint.reporter('console', {fail: true}));
 });
 
 // Output all failures to the console, and then fail.
 gulp.task('fail-after-all', function() {
-    return gulp.src('./tests/fixtures/**/*.js')
-        .pipe(gjslint())
-        .pipe(gjslint.reporter('console'))
-        .pipe(gjslint.reporter('fail'));
+  return gulp.src('./tests/fixtures/**/*.js')
+    .pipe(gjslint())
+    .pipe(gjslint.reporter('console'))
+    .pipe(gjslint.reporter('fail'));
 });
 
 // Usage with jshint-stylish
 // Output all failures to the console using jshint-stylish reporter.
 // This might work with other jshint reporters, but is experimental.
 gulp.task('jshint-adapter', function() {
-    var stylish = require('jshint-stylish/stylish').reporter;
+  var stylish = require('jshint-stylish/stylish').reporter;
 
-    return gulp.src('./tests/fixtures/**/*.js')
-        .pipe(gjslint())
-        .pipe(gjslint.reporter('jshint', stylish, {}));
+  return gulp.src('./tests/fixtures/**/*.js')
+    .pipe(gjslint())
+    .pipe(gjslint.reporter('jshint', stylish, {}));
 });

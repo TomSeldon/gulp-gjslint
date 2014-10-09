@@ -8,7 +8,7 @@ indent_style = space
 chatset = utf-8
 
 [*.js]
-indent_size = 4
+indent_size = 2
 
 [*.json]
 indent_size = 2
