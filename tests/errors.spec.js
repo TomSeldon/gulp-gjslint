@@ -1,12 +1,10 @@
 'use strict';
 
 var chai = require('chai');
-var sinon = require('sinon');
 var sinonChai = require('sinon-chai');
 var mocha = require('mocha');
 var File = require('gulp-util').File;
 var PluginError = require('gulp-util').PluginError;
-var rewire = require('rewire');
 var GulpGjslint = require('../lib/GulpGjslint');
 
 // Setup test tools

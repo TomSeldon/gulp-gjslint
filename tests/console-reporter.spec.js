@@ -5,7 +5,6 @@ var sinon = require('sinon');
 var sinonChai = require('sinon-chai');
 var mocha = require('mocha');
 var File = require('vinyl');
-var through = require('through2');
 var ConsoleReporter = require('../lib/reporters/console-reporter');
 
 // Setup test tools
@@ -17,20 +16,20 @@ describe('Reporter: Console', function() {
 
   beforeEach(function() {
     consoleReporter = new ConsoleReporter().run();
+
+    // Spy on console.log
+    sinon.stub(console, 'log');
   });
 
   afterEach(function() {
-    consoleReporter = null;
+    console.log.restore();
   });
 
   it('should not output anything when passed a valid file', function(done) {
     var validFile = new File();
 
-    sinon.stub(console, 'log');
-
     consoleReporter.on('data', function() {
       console.log.callCount.should.be.equal(0);
-      console.log.restore();
       done();
     });
 
@@ -43,8 +42,6 @@ describe('Reporter: Console', function() {
       var badFile = new File({path: 'some-fake-file.js'});
       var validFile = new File({path: 'some-other-file.js'});
       var i = 0;
-
-      sinon.stub(console, 'log');
 
       badFile.gjslint = {
         success: false,
@@ -62,9 +59,7 @@ describe('Reporter: Console', function() {
         i = i + 1;
 
         if (i === 2) {
-          console.log.should.have.been.called;
           console.log.callCount.should.equal(3);
-          console.log.restore();
           done();
         }
       });
@@ -79,8 +74,6 @@ describe('Reporter: Console', function() {
     var file = new File({path: 'some-other-file.js'});
 
     consoleReporter = new ConsoleReporter({fail: true}).run();
-
-    sinon.stub(console, 'log');
 
     file.gjslint = {
       success: false,
@@ -98,7 +91,6 @@ describe('Reporter: Console', function() {
 
     consoleReporter.on('data', function() {
       errStub.should.have.been.called;
-      console.log.restore();
       done();
     });
 
