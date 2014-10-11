@@ -3,9 +3,7 @@
 var chai = require('chai');
 var sinon = require('sinon');
 var sinonChai = require('sinon-chai');
-var mocha = require('mocha');
 var File = require('vinyl');
-var through = require('through2');
 var FailReporter = require('../lib/reporters/fail-reporter');
 
 // Setup test tools

@@ -2,7 +2,6 @@
 
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
-var mocha = require('mocha');
 var File = require('gulp-util').File;
 var PluginError = require('gulp-util').PluginError;
 var GulpGjslint = require('../lib/GulpGjslint');

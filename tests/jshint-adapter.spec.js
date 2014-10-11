@@ -2,9 +2,7 @@
 
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
-var mocha = require('mocha');
 var File = require('vinyl');
-var through = require('through2');
 var JshintAdapter = require('../lib/util/jshint-adapter');
 
 // Setup test tools

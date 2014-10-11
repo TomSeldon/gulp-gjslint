@@ -3,7 +3,6 @@
 var chai = require('chai');
 var sinon = require('sinon');
 var sinonChai = require('sinon-chai');
-var mocha = require('mocha');
 var File = require('gulp-util').File;
 var rewire = require('rewire');
 var GulpGjslint = rewire('../lib/GulpGjslint');

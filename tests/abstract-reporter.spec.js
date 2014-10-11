@@ -2,7 +2,6 @@
 
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
-var mocha = require('mocha');
 var File = require('vinyl');
 var AbstractReporter = require('../lib/reporters/abstract-reporter');
 
