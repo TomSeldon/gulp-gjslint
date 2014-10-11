@@ -4,7 +4,7 @@
   "description": "Gulp task for running gjslint, the Google Closure linter.",
   "main": "index.js",
   "scripts": {
-    "test": "gulp lint mocha",
+    "test": "gulp mocha && gulp lint",
     "codeclimate": "codeclimate < coverage/lcov.info"
   },
   "homepage": "https://www.github.com/TomSeldon/gulp-gjslint",
