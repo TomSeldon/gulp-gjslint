@@ -2,7 +2,6 @@
 
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
-var File = require('vinyl');
 var AbstractReporter = require('../lib/reporters/abstract-reporter');
 
 // Setup test tools

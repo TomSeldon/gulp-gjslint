@@ -21,7 +21,7 @@ gulp.task('mocha', function(done) {
         .pipe(mocha())
         .pipe(istanbul.writeReports())
         .on('end', done);
-    })
+    });
 });
 
 /**
