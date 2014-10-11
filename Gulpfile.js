@@ -33,3 +33,7 @@ gulp.task('lint', function() {
   gulp.src([srcFiles, testFiles])
     .pipe(jscs());
 });
+
+gulp.task('watch', function() {
+  gulp.watch([srcFiles, testFiles], ['mocha', 'lint']);
+});
