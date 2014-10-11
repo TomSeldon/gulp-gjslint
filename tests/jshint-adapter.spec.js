@@ -1,79 +1,67 @@
 'use strict';
 
-var chai = require('chai'),
-    sinon = require('sinon'),
-    sinonChai = require('sinon-chai'),
-    mocha = require('mocha'),
-    File = require('vinyl'),
-    through = require('through2'),
-    JshintAdapter = require('../lib/util/jshint-adapter');
+var chai = require('chai');
+var sinonChai = require('sinon-chai');
+var File = require('vinyl');
+var JshintAdapter = require('../lib/util/jshint-adapter');
 
 // Setup test tools
 chai.should();
 chai.use(sinonChai);
 
 describe('Jshint Reporter Adapter', function() {
-    var jshintAdapter;
+  it(
+    'should convert a successful gjslint result object ' +
+      'into a jshint compatible one',
+    function() {
+      var file = new File();
+      var parsedFile;
 
-    afterEach(function() {
-        jshintAdapter = null;
-    });
+      file.gjslint = {
+        success: true
+      };
 
-    it(
-        'should convert a successful gjslint result object ' +
-            'into a jshint compatible one',
-        function() {
-            var file, parsedFile;
+      parsedFile = JshintAdapter.parseFile(file);
 
-            file = new File();
+      parsedFile.should.have.property('jshint');
+      parsedFile.jshint.should.have.property('success', true);
+    }
+  );
 
-            file.gjslint = {
-                success: true
-            };
+  it(
+    'should convert a failed gjslint result object ' +
+      'into a jshint compatible one',
+    function() {
+      var parsedFile;
+      var file = new File({path: './fake.js'});
+      var mockError = {
+        code: 2,
+        line: 10,
+        description: 'foo'
+      };
 
-            parsedFile = new JshintAdapter(file);
-
-            parsedFile.should.have.property('jshint');
-            parsedFile.jshint.should.have.property('success', true);
+      file.gjslint = {
+        success: false,
+        results: {
+          errors: [mockError]
         }
-    );
+      };
 
-    it(
-        'should convert a failed gjslint result object ' +
-            'into a jshint compatible one',
-        function() {
-            var file, parsedFile, mockError;
+      parsedFile = JshintAdapter.parseFile(file);
 
-            file = new File({path: './fake.js'});
+      parsedFile.should.have.property('jshint');
+      parsedFile.jshint.should.have.property('success', false);
+      parsedFile.jshint.should.have.property('results');
+      parsedFile.jshint.results.length.should.equal(1);
 
-            mockError = {
-                code: 2,
-                line: 10,
-                description: 'foo'
-            };
+      parsedFile.jshint.results[0].error.reason
+        .should.equal(mockError.description);
 
-            file.gjslint = {
-                success: false,
-                results: {
-                    errors: [mockError]
-                }
-            };
+      parsedFile.jshint.results[0].error.code
+        .should.equal('Warning');
 
-            parsedFile = new JshintAdapter(file);
-
-            parsedFile.should.have.property('jshint');
-            parsedFile.jshint.should.have.property('success', false);
-            parsedFile.jshint.should.have.property('results');
-            parsedFile.jshint.results.length.should.equal(1);
-
-            parsedFile.jshint.results[0].error.reason
-                .should.equal(mockError.description);
-
-            parsedFile.jshint.results[0].error.code
-                .should.equal('Warning');
-
-            parsedFile.jshint.results[0].error.line
-                .should.equal(mockError.line);
-        }
-    );
+      parsedFile.jshint.results[0].error.line
+        .should.equal(mockError.line);
+    }
+  );
 });

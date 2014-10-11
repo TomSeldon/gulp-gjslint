@@ -1,4 +1,4 @@
-gulp-gjslint 
+gulp-gjslint
 ==============
 [![NPM version](https://badge.fury.io/js/gulp-gjslint.svg)](http://badge.fury.io/js/gulp-gjslint)
 [![Build Status](https://travis-ci.org/TomSeldon/gulp-gjslint.svg?branch=master)](https://travis-ci.org/TomSeldon/gulp-gjslint) [![Code Climate](https://codeclimate.com/github/TomSeldon/gulp-gjslint/badges/gpa.svg)](https://codeclimate.com/github/TomSeldon/gulp-gjslint) [![Test Coverage](https://codeclimate.com/github/TomSeldon/gulp-gjslint/badges/coverage.svg)](https://codeclimate.com/github/TomSeldon/gulp-gjslint)
@@ -14,7 +14,7 @@ $ npm install --save-dev gulp-gjslint
 ## Usage
 
 ```js
-// See also: Gulpfile.js
+// See also: Gulpfile.example.js
 
 var gulp = require('gulp'),
     gjslint = require('gulp-gjslint');
