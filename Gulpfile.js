@@ -43,9 +43,14 @@ gulp.task('jscs', function() {
  */
 gulp.task('gjslint', function() {
   var gjslint = require('./index');
+  var options = {
+    flags: [
+      '--flagfile .gjslintrc'
+    ]
+  };
 
-  gulp.src([srcFiles, testFiles])
-    .pipe(gjslint())
+  return gulp.src([srcFiles, testFiles])
+    .pipe(gjslint(options))
     .pipe(gjslint.reporter('console'))
     .pipe(gjslint.reporter('fail'));
 });

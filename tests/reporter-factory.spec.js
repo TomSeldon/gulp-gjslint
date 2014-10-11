@@ -33,7 +33,8 @@ describe('Reporter factory', function() {
     }
   });
 
-  it('should throw an error when attempting to create invalid reporters', function() {
+  it('should throw an error when attempting to create invalid ' +
+    'reporters', function() {
     createInvalidReporter.should.throw();
 
     function createInvalidReporter() {
