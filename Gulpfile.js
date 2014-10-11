@@ -1,9 +1,6 @@
 'use strict';
 
 var gulp = require('gulp');
-var istanbul = require('gulp-istanbul');
-var mocha = require('gulp-mocha');
-var jscs = require('gulp-jscs');
 var srcFiles = 'lib/**/*.js';
 var testFiles = 'tests/**/*.spec.js';
 
@@ -14,6 +11,9 @@ var testFiles = 'tests/**/*.spec.js';
  * code coverage reports using Istanbul.
  */
 gulp.task('mocha', function(done) {
+  var istanbul = require('gulp-istanbul');
+  var mocha = require('gulp-mocha');
+
   gulp.src(srcFiles)
     .pipe(istanbul())
     .on('finish', function() {
@@ -25,15 +25,41 @@ gulp.task('mocha', function(done) {
 });
 
 /**
- * Task: lint
+ * Task: jscs
  *
  * Lints library and spec files using JSCS.
  */
-gulp.task('lint', function() {
+gulp.task('jscs', function() {
+  var jscs = require('gulp-jscs');
+
   gulp.src([srcFiles, testFiles])
     .pipe(jscs());
 });
 
+/**
+ * Task: gjslint
+ *
+ * Lints library and spec files using...itself. #lintception
+ */
+gulp.task('gjslint', function() {
+  var gjslint = require('./index');
+
+  gulp.src([srcFiles, testFiles])
+    .pipe(gjslint())
+    .pipe(gjslint.reporter('console'))
+    .pipe(gjslint.reporter('fail'));
+});
+
+/**
+ * Task: lint
+ *
+ * Runs all linting tasks.
+ */
+gulp.task('lint', ['jscs', 'gjslint']);
+
+/**
+ * Task: watch
+ */
 gulp.task('watch', function() {
   gulp.watch([srcFiles, testFiles], ['mocha', 'lint']);
 });
