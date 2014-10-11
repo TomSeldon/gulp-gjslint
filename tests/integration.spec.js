@@ -36,8 +36,8 @@ describe('Integration tests with gjslint', function() {
         .on('error', errSpy)
         .on('data', function() {
           errSpy.callCount.should.equal(0);
-          done();
-        });
+        })
+        .on('end', done);
     }
   );
 });
