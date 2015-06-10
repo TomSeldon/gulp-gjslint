@@ -33,6 +33,15 @@ gulp.task('default', function() {
         .pipe(gjslint())
         .pipe(gjslint.reporter('console'), {fail: true})
 });
+
+// Pass options to the linter
+// See https://github.com/jmendiara/node-closure-linter-wrapper
+var lintOptions = {flags: ['--nojsdoc', '--max_line_length 120']};
+gulp.task('default', function() {
+    return gulp.src('some/files/**/*.js')
+        .pipe(gjslint(lintOptions))
+        .pipe(gjslint.reporter('console'));
+});
 ```
 
 ## API
