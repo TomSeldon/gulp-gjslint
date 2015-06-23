@@ -1,6 +1,6 @@
 {
   "name": "gulp-gjslint",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Gulp task for running gjslint, the Google Closure linter.",
   "main": "index.js",
   "scripts": {
