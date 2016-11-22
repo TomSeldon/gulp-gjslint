@@ -31,7 +31,7 @@ gulp.task('default', function() {
 gulp.task('default', function() {
     return gulp.src('some/files/**/*.js')
         .pipe(gjslint())
-        .pipe(gjslint.reporter('console'), {fail: true})
+        .pipe(gjslint.reporter('console', {fail: true}))
 });
 
 // Pass options to the linter
